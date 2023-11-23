@@ -1,10 +1,6 @@
 import './JournalItem.css';
 
-function JournalItem() {
-
-    const title = 'Подготовка к обновлению курсов';
-    const date = new Date();
-    const text = 'Горные походы открывают удивительные природные ландшафты, испытывают туристов физически и морально, дают возможность почувствовать себя первопроходцем. У горных походов свои секреты, приобщиться к которым можно только в команде единомышленников и профессионалов.';
+function JournalItem({ title, date, text }) {
 
     return (
         <div className="journal-item">
