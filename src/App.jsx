@@ -1,13 +1,16 @@
 import './App.css';
 
 function App() {
+  
+  //Императивный метод
+  // const node = document.createElement('div');
+  // node.innerHTML = 'fdhk';
+  // document.getElementById('root').appendChild(node);
 
-  // return React.createElement('div', {}, 'Project New 2023');
-
+  //декларативный метод программирования
   return (
-    // <React.Fragment></React.Fragment> --- добавляем тк нуден родительский элемент. но можем заменить <></>
     <>
-      <h1>Header</h1>
+      <h1>Header</h1> 
       <p>Paragraph</p>
     </>
   );
