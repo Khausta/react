@@ -1,9 +1,9 @@
 import './Button.css';
 
-function Button() {
-
+function Button({ action }) {
+	
 	return (
-		<button className='button accent'>Save</button>
+		<button className='button accent'>{action}</button>
 	);
 }
   
