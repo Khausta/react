@@ -5,6 +5,7 @@ import JournalItem from './components/JournalItem/JournalItem';
 
 function App() {
 
+	
 	const data = [
 		{
 			title: 'Подготовка к обновлению курсов',
