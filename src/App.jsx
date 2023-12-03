@@ -23,6 +23,10 @@ function App() {
 		}
 	];
 
+	function inputChange(event) {
+		console.log(event.target.value);
+	}
+
 	return (
 		<div className='app'>
 			<LeftPanel>
@@ -47,7 +51,7 @@ function App() {
 				</JournalList>
 			</LeftPanel>
 			<Body>
-				Body
+				<input type='text' onChange={inputChange}/> 
 				<h1>Header</h1> 
 				<p>Paragraph</p>
 				<Button/>
