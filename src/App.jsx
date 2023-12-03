@@ -1,5 +1,4 @@
 import './App.css';
-import Button from './components/Button/Button';
 import CardButton from './components/CardButton/CardButton';
 import JournalItem from './components/JournalItem/JournalItem';
 import LeftPanel from './layouts/LeftPanel/LeftPanel';
@@ -7,7 +6,7 @@ import JournalItemAddButton from './components/JournalItemAddButton/JournalItemA
 import JournalList from './components/JournalList/JournalList';
 import Header from './components/Header/Header';
 import Body from './layouts/Body/Body';
-import { useState } from 'react';
+import JournalForm from './components/JournalForm/JournalForm';
 
 function App() {
 
@@ -23,13 +22,6 @@ function App() {
 			date: new Date()
 		}
 	];
-
-	const [inputData, setInputData] = useState('');
-
-	function inputChange(event) {
-		console.log(event.target.value);
-		setInputData(event.target.value);
-	}
 
 	return (
 		<div className='app'>
@@ -55,10 +47,7 @@ function App() {
 				</JournalList>
 			</LeftPanel>
 			<Body>
-				<input type='text' value={inputData} onChange={inputChange}/> 
-				<h1>Header</h1> 
-				<p>Paragraph</p>
-				<Button/>
+				<JournalForm/>
 			</Body>
 		</div>
 	);
