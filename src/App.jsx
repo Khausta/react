@@ -2,6 +2,7 @@ import './App.css';
 import Button from './components/Button/Button';
 import CardButton from './components/CardButton/CardButton';
 import JournalItem from './components/JournalItem/JournalItem';
+import ButtonCount from './components/ButtonCount/ButtonCount';
 
 function App() {
 
@@ -23,6 +24,8 @@ function App() {
 			<h1>Header</h1> 
 			<p>Paragraph</p>
 			<Button/>
+			<ButtonCount/>
+			<ButtonCount/>
 			<CardButton>
         New memories
 			</CardButton>
