@@ -7,6 +7,7 @@ import JournalItemAddButton from './components/JournalItemAddButton/JournalItemA
 import JournalList from './components/JournalList/JournalList';
 import Header from './components/Header/Header';
 import Body from './layouts/Body/Body';
+import { useState } from 'react';
 
 function App() {
 
@@ -23,8 +24,11 @@ function App() {
 		}
 	];
 
+	const [inputData, setInputData] = useState('');
+
 	function inputChange(event) {
 		console.log(event.target.value);
+		setInputData(event.target.value);
 	}
 
 	return (
@@ -51,13 +55,11 @@ function App() {
 				</JournalList>
 			</LeftPanel>
 			<Body>
-				<input type='text' onChange={inputChange}/> 
+				<input type='text' value={inputData} onChange={inputChange}/> 
 				<h1>Header</h1> 
 				<p>Paragraph</p>
 				<Button/>
 			</Body>
-
-			
 		</div>
 	);
 }
