@@ -2,7 +2,11 @@ import './App.css';
 import Button from './components/Button/Button';
 import CardButton from './components/CardButton/CardButton';
 import JournalItem from './components/JournalItem/JournalItem';
-import ButtonCount from './components/ButtonCount/ButtonCount';
+import LeftPanel from './layouts/LeftPanel/LeftPanel';
+import JournalItemAddButton from './components/JournalItemAddButton/JournalItemAddButton';
+import JournalList from './components/JournalList/JournalList';
+import Header from './components/Header/Header';
+import Body from './layouts/Body/Body';
 
 function App() {
 
@@ -20,30 +24,37 @@ function App() {
 	];
 
 	return (
-		<>
-			<h1>Header</h1> 
-			<p>Paragraph</p>
-			<Button/>
-			<ButtonCount/>
-			<ButtonCount/>
-			<CardButton>
-        New memories
-			</CardButton>
-			<CardButton>
-				<JournalItem
-					title={data[0].title}
-					date={data[0].date}
-					text={data[0].text}
-				/>
-			</CardButton>
-			<CardButton>
-				<JournalItem
-					title={data[1].title}
-					date={data[1].date}
-					text={data[1].text}
-				/>
-			</CardButton>
-		</>
+		<div className='app'>
+			<LeftPanel>
+				<Header/>
+				<JournalItemAddButton>
+				</JournalItemAddButton>
+				<JournalList>
+					<CardButton>
+						<JournalItem
+							title={data[0].title}
+							date={data[0].date}
+							text={data[0].text}
+						/>
+					</CardButton>
+					<CardButton>
+						<JournalItem
+							title={data[1].title}
+							date={data[1].date}
+							text={data[1].text}
+						/>
+					</CardButton>
+				</JournalList>
+			</LeftPanel>
+			<Body>
+				Body
+				<h1>Header</h1> 
+				<p>Paragraph</p>
+				<Button/>
+			</Body>
+
+			
+		</div>
 	);
 }
 

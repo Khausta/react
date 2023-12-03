@@ -1,5 +1,6 @@
 .card-button {
     display: block;
+    width: 100%;
     padding: 20px;
     border-radius: 3px;
     background: rgb(112 202 170 / 58%);
