@@ -2,9 +2,9 @@ import './Header.css';
 
 function Header() {
 	return (
-		<>
-			<img src="/src/assets/logo.svg" alt="Personal Journal Logotype" />
-		</>
+		
+		<img className='logo' src=" /logo.svg" alt="Personal Journal Logotype" />
+		
 	);
 }
 
