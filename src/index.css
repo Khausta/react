@@ -1,8 +1,11 @@
 :root {
   --grey-50: #EBEEF5;
   --grey-300: #8E95A9;
+  --gray-600: #475069;
+  --gray-700: #323B54;
   --primary-400: #7B6EF6;
   --white-100: #FFF;
+  --pink-my: #d719c4;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -17,7 +20,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
+* {
+  box-sizing: border-box;
+}
 
 a {
   font-weight: 500;
@@ -34,7 +39,9 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-   background-color: #97e7bc;
+  background-color: #431255;
+  /* background: url("assets/background-img.png") center center/cover no-repeat; */
+  background-image: url("assets/Background-image.png");
 }
 
 h1 {
