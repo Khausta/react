@@ -1,5 +1,4 @@
 .input-container {
-    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;

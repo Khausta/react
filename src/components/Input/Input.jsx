@@ -14,9 +14,11 @@ function Input({ placeholder, icon }) {
 	if (icon) {
 		return (
 			<>
-				<img className='input_icon' src={iconSrc} alt="search icon" />
-				<input className={inputCl} type='text' placeholder={placeholder}>
-				</input>
+				<div className='input__wrapper'>
+					<img className='input_icon' src={iconSrc} alt="search icon" />
+					<input className={inputCl} type='text' placeholder={placeholder}>
+					</input>
+				</div>
 			</>
 		);
 	}

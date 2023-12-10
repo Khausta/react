@@ -1,5 +1,6 @@
 :root {
   --grey-50: #EBEEF5;
+  --grey-200: #A8AEBF;
   --grey-300: #8E95A9;
   --gray-600: #475069;
   --gray-700: #323B54;
@@ -36,11 +37,10 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
   background-color: #431255;
-  /* background: url("assets/background-img.png") center center/cover no-repeat; */
   background-image: url("assets/Background-image.png");
 }
 

@@ -1,3 +1,6 @@
+.input__wrapper {
+    position: relative;
+}
 .input {
     width: 384px;
     padding: 16px 32px;

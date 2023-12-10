@@ -3,7 +3,10 @@ import Button from './components/Button/Button';
 import Header from './components/Header/Header';
 import Input from './components/Input/Input';
 import InputContainer from './components/InputsContainer/InputsContainer';
+import NavigationPanel from './components/NavigationPanel/NavigationPanel';
 import Paragraph from './components/Paragraph/Paragraph';
+import MenuItem from './components/MenuItem/MenuItem';
+import FavoritesMenuItem from './components/FavoritesMenuItem/FavoritesMenuItem';
 
 function App() {
 
@@ -22,6 +25,21 @@ function App() {
 
 	return (
 		<>
+			<NavigationPanel>
+				<MenuItem
+					href='#'
+					text='Поиск фильмов'
+				/>
+				<FavoritesMenuItem
+					href='#'
+					count={3}
+				/>
+				<MenuItem
+					href='#'
+					text='Войти'
+					icon='login'
+				/>
+			</NavigationPanel>
 			<Header 
 				title={data[0].title}
 			/>
@@ -43,7 +61,7 @@ function App() {
 			<Header 
 				title={data[1].title}
 			/>
-			<InputContainer 	className={'input-container_profile'}>
+			<InputContainer className={'input-container_profile'}>
 				<Input
 					placeholder={data[1].text}	
 				/>
@@ -52,9 +70,6 @@ function App() {
 					action={data[1].action}
 				/>
 			</InputContainer>
-			
-			
-			
 		</>
 	);
 }

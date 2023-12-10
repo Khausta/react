@@ -1,0 +1,14 @@
+.menu-item__favorites-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    background: #7B6EF6;
+    color: var(--white-100);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 170%;
+}
