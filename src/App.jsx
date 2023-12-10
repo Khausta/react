@@ -3,10 +3,11 @@ import Button from './components/Button/Button';
 import Header from './components/Header/Header';
 import Input from './components/Input/Input';
 import InputContainer from './components/InputsContainer/InputsContainer';
-import NavigationPanel from './components/NavigationPanel/NavigationPanel';
+import NavigationPanel from './layouts/NavigationPanel/NavigationPanel';
 import Paragraph from './components/Paragraph/Paragraph';
 import MenuItem from './components/MenuItem/MenuItem';
 import FavoritesMenuItem from './components/FavoritesMenuItem/FavoritesMenuItem';
+import Body from './layouts/Body/Body';
 
 function App() {
 
@@ -40,36 +41,39 @@ function App() {
 					icon='login'
 				/>
 			</NavigationPanel>
-			<Header 
-				title={data[0].title}
-			/>
-			<Paragraph
-				text={data[0].text}
-			/>
-			<InputContainer>
-				<Input
-					icon={'search'}
-					placeholder={'Введите название'}	
+			<Body>
+				<Header 
+					title={data[0].title}
 				/>
-				<Button
-					onClick={() => console.log('Search')}
-					action={data[0].action}
+				<Paragraph
+					text={data[0].text}
 				/>
-			</InputContainer>
+				<InputContainer>
+					<Input
+						icon={'search'}
+						placeholder={'Введите название'}	
+					/>
+					<Button
+						onClick={() => console.log('Search')}
+						action={data[0].action}
+					/>
+				</InputContainer>
 
 
-			<Header 
-				title={data[1].title}
-			/>
-			<InputContainer className={'input-container_profile'}>
-				<Input
-					placeholder={data[1].text}	
+				<Header 
+					title={data[1].title}
 				/>
-				<Button
-					onClick={() => console.log('Войти в профиль')}
-					action={data[1].action}
-				/>
-			</InputContainer>
+				<InputContainer className={'input-container_profile'}>
+					<Input
+						placeholder={data[1].text}	
+					/>
+					<Button
+						onClick={() => console.log('Войти в профиль')}
+						action={data[1].action}
+					/>
+				</InputContainer>
+			</Body>
+			
 		</>
 	);
 }
