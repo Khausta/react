@@ -7,6 +7,7 @@ import JournalList from './components/JournalList/JournalList';
 import Header from './components/Header/Header';
 import Body from './layouts/Body/Body';
 import JournalForm from './components/JournalForm/JournalForm';
+import Button from './components/Button/Button';
 
 function App() {
 
@@ -30,20 +31,16 @@ function App() {
 				<JournalItemAddButton>
 				</JournalItemAddButton>
 				<JournalList>
-					<CardButton>
-						<JournalItem
-							title={data[0].title}
-							date={data[0].date}
-							text={data[0].text}
-						/>
-					</CardButton>
-					<CardButton>
-						<JournalItem
-							title={data[1].title}
-							date={data[1].date}
-							text={data[1].text}
-						/>
-					</CardButton>
+					{/* {[<Button>1</Button>, <Button>2</Button>]} */}
+					{data.map(el => (
+						<CardButton>
+							<JournalItem
+								title={el.title}
+								date={el.date}
+								text={el.text}
+							/>
+						</CardButton>
+					))}
 				</JournalList>
 			</LeftPanel>
 			<Body>
