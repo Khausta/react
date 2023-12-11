@@ -1,6 +1,4 @@
 import './App.css';
-import CardButton from './components/CardButton/CardButton';
-import JournalItem from './components/JournalItem/JournalItem';
 import LeftPanel from './layouts/LeftPanel/LeftPanel';
 import JournalItemAddButton from './components/JournalItemAddButton/JournalItemAddButton';
 import JournalList from './components/JournalList/JournalList';
@@ -10,18 +8,18 @@ import JournalForm from './components/JournalForm/JournalForm';
 import { useState } from 'react';
 
 const INITIAL_DATA = [
-	{
-		id: 1,
-		title: 'Подготовка к обновлению курсов',
-		text: 'Горные походы открывают удивительные природные ландшафты, испытывают туристов физически и морально, дают возможность почувствовать себя первопроходцем. У горных походов свои секреты, приобщиться к которым можно только в команде единомышленников и профессионалов.',
-		date: new Date()
-	},
-	{
-		id: 2,
-		title: 'Поход в горы',
-		text: 'Различают альпинизм и горный туризм. Если в альпинизме главная цель – покорение вершины, то горный туризм – это длительное путешествие в горах, связанное с прохождением многочисленных препятствий. В нем огромную роль играет физическая подготовка путешественников, их выносливость, способность переносить большие нагрузки и тяжести в условиях высокогорья.',
-		date: new Date()
-	}
+	// {
+	// 	id: 1,
+	// 	title: 'Подготовка к обновлению курсов',
+	// 	text: 'Горные походы открывают удивительные природные ландшафты, испытывают туристов физически и морально, дают возможность почувствовать себя первопроходцем. У горных походов свои секреты, приобщиться к которым можно только в команде единомышленников и профессионалов.',
+	// 	date: new Date()
+	// },
+	// {
+	// 	id: 2,
+	// 	title: 'Поход в горы',
+	// 	text: 'Различают альпинизм и горный туризм. Если в альпинизме главная цель – покорение вершины, то горный туризм – это длительное путешествие в горах, связанное с прохождением многочисленных препятствий. В нем огромную роль играет физическая подготовка путешественников, их выносливость, способность переносить большие нагрузки и тяжести в условиях высокогорья.',
+	// 	date: new Date()
+	// }
 ];
 
 function App() {
@@ -37,13 +35,6 @@ function App() {
 		}]);
 	};
 
-	const sortItems = (a, b) => {
-		if (a.date < b.date) {
-			return 1;
-		} else {
-			return -1;
-		}
-	};
 	
 
 	return (
@@ -52,8 +43,12 @@ function App() {
 				<Header/>
 				<JournalItemAddButton>
 				</JournalItemAddButton>
-				<JournalList>
-					{items.sort(sortItems).map(el => (
+				<JournalList items={items}>
+					{/* можно через тернарный оператор ? */}
+
+					{/* можно через логические операторы */}
+					{/* {items.length === 0 && <p>Записей нет</p>}
+					{items.length > 0 && items.sort(sortItems).map(el => (
 						<CardButton key={el.id}>
 							<JournalItem
 								title={el.title}
@@ -61,7 +56,12 @@ function App() {
 								text={el.text}
 							/>
 						</CardButton>
-					))}
+					))} */}
+					
+					{/* можно серез отдельное выражение */}
+					{/* {list} */}
+
+					{/* можно в компоненте пропиcать логику и использовать ключ состояние {items} */}
 				</JournalList>
 			</LeftPanel>
 			<Body>
