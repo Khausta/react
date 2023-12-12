@@ -1,0 +1,11 @@
+.input-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.input-container_profile {
+    max-width: 384px;
+    flex-direction: column;
+}
+

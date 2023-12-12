@@ -1,0 +1,41 @@
+.menu-item__link {
+    position: relative;
+    display: flex;
+    padding: 12px 16px;
+    color: var(--grey-200);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; 
+    transition: .1s;
+    gap: 8px;
+}
+
+.menu-item__link:hover {
+    color: var(--white-100);
+
+    path {
+        transition: .1s;
+        stroke: var(--white-100);
+    }
+}
+
+.menu-item_active {
+    color: var(--white-100);
+}
+
+
+
+.menu-item__icon {
+    position: absolute;
+    right: 16px;
+}
+
+.menu-item__icon:hover {
+    path {
+        stroke: var(--white-100);
+    }
+}
+
+
+
