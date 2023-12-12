@@ -8,6 +8,8 @@ import Paragraph from './components/Paragraph/Paragraph';
 import MenuItem from './components/MenuItem/MenuItem';
 import FavoritesMenuItem from './components/FavoritesMenuItem/FavoritesMenuItem';
 import Body from './layouts/Body/Body';
+import CardGrid from './components/CardGrid/CardGrid';
+
 
 function App() {
 
@@ -21,6 +23,57 @@ function App() {
 			title: 'Вход',
 			text: 'Ваше имя',
 			action: 'Войти в профиль'
+		}
+	];
+
+	const movies = [
+		{
+			id: 1,
+			title: 'Black Widow',
+			cover: 'covers/black-widow.png',
+			rating: 123
+		},
+		{
+			id: 2,
+			title: 'Black Widow',
+			cover: 'covers/chang-chi.png',
+			rating: 100
+		},
+		{
+			id: 3,
+			title: 'Loki',
+			cover: 'covers/loki.png',
+			rating: 500
+		},
+		{
+			id: 4,
+			title: 'How I Met Your Mother',
+			cover: 'covers/how-i-met-your-mother.png',
+			rating: 130
+		},
+		{
+			id: 5,
+			title: 'Money Heist',
+			cover: 'covers/money-heist.png',
+			rating: 100
+		},
+		{
+			id: 6,
+			title: 'Friends',
+			cover: 'covers/friends.png',
+			rating: 100
+		},
+		{
+			id: 7,
+			title: 'The Big Bang Theory',
+			cover: 'covers/the-big-bang-theory.png',
+			rating: 230
+		},
+		{
+			id: 8,
+			title: 'Two And a Half Men',
+			cover: 'covers/two-and-a-half-men.png',
+			rating: 230
 		}
 	];
 
@@ -58,20 +111,7 @@ function App() {
 						action={data[0].action}
 					/>
 				</InputContainer>
-
-
-				<Header 
-					title={data[1].title}
-				/>
-				<InputContainer className={'input-container_profile'}>
-					<Input
-						placeholder={data[1].text}	
-					/>
-					<Button
-						onClick={() => console.log('Войти в профиль')}
-						action={data[1].action}
-					/>
-				</InputContainer>
+				<CardGrid items={movies} />
 			</Body>
 			
 		</>
