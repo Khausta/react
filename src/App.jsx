@@ -39,20 +39,22 @@ function App() {
 	
 
 	return (
-		<UserContext.Provider value={{userId: 1}}>
-			<div className='app'>
-				<LeftPanel>
-					<Header/>
-					<JournalItemAddButton>
-					</JournalItemAddButton>
-					<JournalList items={items}>
-					</JournalList>
-				</LeftPanel>
-				<Body>
-					<JournalForm onSubmit={addItem} />
-				</Body>
-			</div>
-		</UserContext.Provider>
+		<>
+			<UserContext.Provider value={{userId: 2	}}>
+				<div className='app'>
+					<LeftPanel>
+						<Header/>
+						<JournalItemAddButton>
+						</JournalItemAddButton>
+						<JournalList items={items}>
+						</JournalList>
+					</LeftPanel>
+					<Body>
+						<JournalForm onSubmit={addItem} />
+					</Body>
+				</div>
+			</UserContext.Provider>
+		</>
 	);
 }
 
