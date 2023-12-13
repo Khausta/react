@@ -5,13 +5,55 @@
     
 }
 
+.input {
+    width: 100%;
+    border: none;
+    background: none;
+    color: #FFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-family: 'Source Sans 3', sans-serif;
+    border-bottom: 1px solid #7b7b7b;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+filter: invert(100%);
+}
+
+.input-title {
+    width: 100%;
+    border: none;
+    background: none;
+    color: #FFF;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-family: 'Source Sans 3', sans-serif;
+    border-bottom: 1px solid #7b7b7b;
+}
+
+.form-label {
+    min-width: 150px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
 .invalid {
     border: 1px solid red;
     background: rgb(220, 183, 183);
     
 }
 
-.input {
-    /* border: none; */
-    background: rgba(255, 255, 255, 0.10);
+textarea {
+    resize: none;
 }
