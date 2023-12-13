@@ -1,20 +1,20 @@
-import './CardGrid.css';
+import styles from './CardGrid.module.css';
 import Card from '../Card/Card';
 function CardGrid({ items }) {
-
+ 
 	if (items.length === 0) {
 		return <>
-			<h2 className='cards__header'>
+			<h2 className={styles['cards__header']}>
 				Упс... Ничего не найдено
 			</h2>
-			<p className='cards__subheader'> 
+			<p className={styles['cards__subheader']}> 
 				Попробуйте изменить запрос или ввести более точное название фильма
 			</p>
 		</>;
 	}
 
 	return (
-		<div className='cards'> 
+		<div className={styles['cards']}> 
 			{items.map(item => (
 				<Card 
 					key={item.id}

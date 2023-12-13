@@ -1,4 +1,4 @@
-import './MenuItem.css';
+import styles from './MenuItem.module.css';
 
 function MenuItem({ href, text, icon}) {
 	const icons = [
@@ -16,18 +16,18 @@ function MenuItem({ href, text, icon}) {
 
 	if (icon) {
 		return (
-			<li className='menu-item'>
-				<a className='menu-item__link' href={href} target="_blank" rel="noopener noreferrer">
+			<li className={styles['menu-item']}>
+				<a className={styles['menu-item__link']} href={href} target="_blank" rel="noopener noreferrer">
 					{text}
-					{icons[0].icon}
+					{icons.find(el => el.name === icon).icon}
 				</a>
 			</li>
 		);
 	}
 
 	return (
-		<li className='menu-item'>
-			<a className='menu-item__link' href={href} target="_blank" rel="noopener noreferrer">
+		<li className={styles['menu-item']}>
+			<a className={styles['menu-item__link']} href={href} target="_blank" rel="noopener noreferrer">
 				{text}
 			</a>
 		</li>

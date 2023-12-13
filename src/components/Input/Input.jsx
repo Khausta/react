@@ -1,4 +1,5 @@
-import './Input.css';
+import styles from './Input.module.css';
+import classNames from 'classnames';
 
 function Input({ placeholder, icon }) {
 	const icons = [
@@ -8,22 +9,24 @@ function Input({ placeholder, icon }) {
 		}
 	];
 
-	const inputCl = 'input' + (icon ? ' ' + 'input_with-icon' : '');
+	// const inputCl = styles['input'] + (icon ? ' ' + styles['input_with-icon'] : '');
 	const iconSrc = icon ? icons.find(el => el.name == icon).path : null;
 
 	if (icon) {
 		return (
 			<>
-				<div className='input__wrapper'>
-					<img className='input_icon' src={iconSrc} alt="search icon" />
-					<input className={inputCl} type='text' placeholder={placeholder}>
+				<div className={styles['input__wrapper']}>
+					<img className={styles['input_icon']} src={iconSrc} alt="search icon" />
+					<input className={classNames(styles['input'],{
+						[styles['input_with-icon']] : icon 
+					})} type='text' placeholder={placeholder}>
 					</input>
 				</div>
 			</>
 		);
 	}
 	return (
-		<input className='input' type='text' placeholder={placeholder}>
+		<input className={styles['input']} type='text' placeholder={placeholder}>
 		</input>
 		
 	);

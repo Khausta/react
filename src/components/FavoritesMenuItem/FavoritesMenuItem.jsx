@@ -1,12 +1,13 @@
-import './FavoritesMenuItem.css';
+import styles from './FavoritesMenuItem.module.css';
+import menuItemStyles from '../MenuItem/MenuItem.module.css';
 
 function FavoritesMenuItem({ href, count}) {
 		
 	return (
-		<li className='menu-item'>
-			<a className='menu-item__link menu-item__favorites' href={href} target="_blank" rel="noopener noreferrer">
+		<li className={menuItemStyles['menu-item']}>
+			<a className={`${menuItemStyles['menu-item__link']} ${styles['menu-item__favorites']}`} href={href} target="_blank" rel="noopener noreferrer">
 				Мои фильмы
-				<div className='menu-item__favorites-counter'>
+				<div className={styles['menu-item__favorites-counter']}>
 					{count}
 				</div>
 			</a>

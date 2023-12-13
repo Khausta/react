@@ -1,10 +1,12 @@
-import './InputsContainer.css';
+import styles from './InputsContainer.module.css';
+import classNames from 'classnames';
 
 function InputContainer({children, className}) {
-	const cl = 'input-container' + (className ? ' ' + className : ' ');
     
 	return (
-		<div className={cl}>
+		<div className={classNames(styles['input-container'], {
+			[styles[className]] : className
+		})}>
 			{children}
 		</div>
 	);
