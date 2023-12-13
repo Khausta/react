@@ -26,6 +26,7 @@ const INITIAL_DATA = [
 function App() {
 
 	const [items, setItems] = useState(INITIAL_DATA);
+	const [userId, setUserId] = useState(1);
 
 	const addItem = item => {
 		setItems(oldItems => [...oldItems, {
@@ -39,22 +40,20 @@ function App() {
 	
 
 	return (
-		<>
-			<UserContext.Provider value={{userId: 2	}}>
-				<div className='app'>
-					<LeftPanel>
-						<Header/>
-						<JournalItemAddButton>
-						</JournalItemAddButton>
-						<JournalList items={items}>
-						</JournalList>
-					</LeftPanel>
-					<Body>
-						<JournalForm onSubmit={addItem} />
-					</Body>
-				</div>
-			</UserContext.Provider>
-		</>
+		<UserContext.Provider value={{ userId, setUserId}}>
+			<div className='app'>
+				<LeftPanel>
+					<Header/>
+					<JournalItemAddButton>
+					</JournalItemAddButton>
+					<JournalList items={items}>
+					</JournalList>
+				</LeftPanel>
+				<Body>
+					<JournalForm onSubmit={addItem} />
+				</Body>
+			</div>
+		</UserContext.Provider>
 	);
 }
 
