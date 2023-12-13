@@ -44,24 +44,6 @@ function App() {
 				<JournalItemAddButton>
 				</JournalItemAddButton>
 				<JournalList items={items}>
-					{/* можно через тернарный оператор ? */}
-
-					{/* можно через логические операторы */}
-					{/* {items.length === 0 && <p>Записей нет</p>}
-					{items.length > 0 && items.sort(sortItems).map(el => (
-						<CardButton key={el.id}>
-							<JournalItem
-								title={el.title}
-								date={el.date}
-								text={el.text}
-							/>
-						</CardButton>
-					))} */}
-					
-					{/* можно серез отдельное выражение */}
-					{/* {list} */}
-
-					{/* можно в компоненте пропиcать логику и использовать ключ состояние {items} */}
 				</JournalList>
 			</LeftPanel>
 			<Body>
