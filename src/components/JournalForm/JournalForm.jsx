@@ -2,6 +2,7 @@ import styles from './JournalForm.module.css';
 import Button from '../Button/Button';
 import { useState } from 'react';
 import classNames from 'classnames';
+import { UserContext } from '../../contexts/user.context';
 
 
 function JournalForm({ onSubmit }) {
@@ -43,34 +44,39 @@ function JournalForm({ onSubmit }) {
 	};
 
 	return (
-		<form className={styles['journal-form']} onSubmit={addJournalItem}> 
-			<div>
-				<input type='text' name="title" className={classNames(styles['input-title'], {
-					[styles['invalid']]: !formValidState.title
-				})}  /> 
-			</div>
-			<div className={styles['form-row']}>
-				<label htmlFor="date" className={styles['form-label']}>
-					<img src="/calendar.svg" alt="calendar icon" />
-					<span>Дата</span>
-				</label>
-				<input type='date' name="date" id='date' className={classNames(styles['input'], {
-					[styles['invalid']]: !formValidState.date
-				})}  /> 
-			</div>
-			<div className={styles['form-row']}>
-				<label htmlFor="tag" className={styles['form-label']}>
-					<img src="/folder.svg" alt="folder icon" />
-					<span>Метки</span>
-				</label>
-				<input type='text' name="tag" id='tag' className={styles.input} /> 
-			</div>
+		<UserContext.Consumer>
+			{(context) => (
+				<form className={styles['journal-form']} onSubmit={addJournalItem}> 
+					{context.userId}
+					<div>
+						<input type='text' name="title" className={classNames(styles['input-title'], {
+							[styles['invalid']]: !formValidState.title
+						})}  /> 
+					</div>
+					<div className={styles['form-row']}>
+						<label htmlFor="date" className={styles['form-label']}>
+							<img src="/calendar.svg" alt="calendar icon" />
+							<span>Дата</span>
+						</label>
+						<input type='date' name="date" id='date' className={classNames(styles['input'], {
+							[styles['invalid']]: !formValidState.date
+						})}  /> 
+					</div>
+					<div className={styles['form-row']}>
+						<label htmlFor="tag" className={styles['form-label']}>
+							<img src="/folder.svg" alt="folder icon" />
+							<span>Метки</span>
+						</label>
+						<input type='text' name="tag" id='tag' className={styles.input} /> 
+					</div>
 			
-			<textarea name="text" id="" cols="30" rows="10" className={classNames(styles['input'], {
-				[styles['invalid']]: !formValidState.text
-			})}  ></textarea>
-			<Button text="Сохранить" />
-		</form>
+					<textarea name="text" id="" cols="30" rows="10" className={classNames(styles['input'], {
+						[styles['invalid']]: !formValidState.text
+					})}  ></textarea>
+					<Button text="Сохранить" />
+				</form>
+			)}
+		</UserContext.Consumer>
 	);
 }
 

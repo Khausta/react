@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import Body from './layouts/Body/Body';
 import JournalForm from './components/JournalForm/JournalForm';
 import { useState } from 'react';
+import { UserContext } from './contexts/user.context';
 
 const INITIAL_DATA = [
 	// {
@@ -38,18 +39,20 @@ function App() {
 	
 
 	return (
-		<div className='app'>
-			<LeftPanel>
-				<Header/>
-				<JournalItemAddButton>
-				</JournalItemAddButton>
-				<JournalList items={items}>
-				</JournalList>
-			</LeftPanel>
-			<Body>
-				<JournalForm onSubmit={addItem} />
-			</Body>
-		</div>
+		<UserContext.Provider value={{userId: 1}}>
+			<div className='app'>
+				<LeftPanel>
+					<Header/>
+					<JournalItemAddButton>
+					</JournalItemAddButton>
+					<JournalList items={items}>
+					</JournalList>
+				</LeftPanel>
+				<Body>
+					<JournalForm onSubmit={addItem} />
+				</Body>
+			</div>
+		</UserContext.Provider>
 	);
 }
 
