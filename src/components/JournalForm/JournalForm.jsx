@@ -1,20 +1,42 @@
 import styles from './JournalForm.module.css';
 import Button from '../Button/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { UserContext } from '../../contexts/user.context';
-import { useContext } from 'react';
+// import { UserContext } from '../../contexts/user.context';
+// import { useContext } from 'react';
+
+const INITIAL_STATE = {
+	title: true,
+	post: true,
+	date: true
+};
 
 
 function JournalForm({ onSubmit }) {
 
-	const {userId} = useContext(UserContext);
+	// const {userId} = useContext(UserContext);
 
-	const [formValidState, setFormValidState] = useState({
-		title: true,
-		date: true,
-		text: true
-	});
+	// const [formValidState, setFormValidState] = useState({
+	// 	title: true,
+	// 	date: true,
+	// 	text: true
+	// });
+
+	const [formValidState, setFormValidState] = useState(INITIAL_STATE);
+
+	useEffect(() => {
+		let timerId;
+		if (!formValidState.date || !formValidState.post || !formValidState.title) {
+			timerId = setTimeout(() => {
+				console.log('Очистка состояния');
+				setFormValidState(INITIAL_STATE);
+			}, 2000);
+		}
+		return () => {
+			clearTimeout(timerId);
+		};
+	}, [formValidState]);
+
 
 	const addJournalItem = (e) => {
 		e.preventDefault();
@@ -48,7 +70,7 @@ function JournalForm({ onSubmit }) {
 
 	return (
 		<form className={styles['journal-form']} onSubmit={addJournalItem}> 
-			{userId}
+			{/* {userId} */}
 			<div>
 				<input type='text' name="title" className={classNames(styles['input-title'], {
 					[styles['invalid']]: !formValidState.title
