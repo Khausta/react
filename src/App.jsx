@@ -6,7 +6,7 @@ import Header from './components/Header/Header';
 import Body from './layouts/Body/Body';
 import JournalForm from './components/JournalForm/JournalForm';
 import { useState } from 'react';
-import { UserContext } from './contexts/user.context';
+import { UserContextProvider } from './contexts/user.context';
 
 const INITIAL_DATA = [
 	// {
@@ -26,7 +26,7 @@ const INITIAL_DATA = [
 function App() {
 
 	const [items, setItems] = useState(INITIAL_DATA);
-	const [userId, setUserId] = useState(1);
+	// const [userId, setUserId] = useState(1);
 
 	const addItem = item => {
 		setItems(oldItems => [...oldItems, {
@@ -40,7 +40,7 @@ function App() {
 	
 
 	return (
-		<UserContext.Provider value={{ userId, setUserId}}>
+		<UserContextProvider>
 			<div className='app'>
 				<LeftPanel>
 					<Header/>
@@ -53,7 +53,7 @@ function App() {
 					<JournalForm onSubmit={addItem} />
 				</Body>
 			</div>
-		</UserContext.Provider>
+		</UserContextProvider>
 	);
 }
 
