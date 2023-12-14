@@ -56,6 +56,13 @@ function App() {
 	// 	})));
 	// }
 
+	useEffect(() => {
+		if (items.length) {
+			console.log('Запись');
+			localStorage.setItem('data', JSON.stringify(items));
+		}
+	}, [items]);
+
 	const addItem = item => {
 		setItems(oldItems => [...oldItems, {
 			text: item.text,
