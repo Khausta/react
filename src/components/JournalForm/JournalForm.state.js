@@ -6,17 +6,20 @@ export const INITIAL_STATE = {
 	},
 
 	values: {
-		title: undefined,
-		date: undefined,
-		text: undefined
+		title: '',
+		date: '',
+		text: '',
+		tag: ''
 	},
 	isFormReadyToSubmit: false
 };
 
 export function formReducer(state, action) {
 	switch (action.type) {
+		
 	case 'RESET_VALIDITY':
 		return { ...state, isValid: INITIAL_STATE.isValid};
+
 	case 'SUBMIT': {
 		const titleValidity = action.payload.title?.trim().length;
 		const dateValidity = action.payload.date;
@@ -31,5 +34,13 @@ export function formReducer(state, action) {
 			isFormReadyToSubmit: titleValidity && dateValidity && textValidity
 		};
 	}
+
+	case 'CLEAR_FORM':  
+		return { ...state, values: INITIAL_STATE.values };
+
+	case 'SET_VALUE': 
+		return { ...state, values: {...state.values, ...action.payload}};
 	}
+
+
 }       

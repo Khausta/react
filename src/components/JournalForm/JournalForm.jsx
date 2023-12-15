@@ -28,6 +28,8 @@ function JournalForm({ onSubmit }) {
 	useEffect(() => {
 		if (isFormReadyToSubmit) {
 			onSubmit(values);
+			console.log('Очистка формы');
+			dispatchForm({ type: 'CLEAR_FORM' });
 		}
 	}, [isFormReadyToSubmit]);
 
@@ -39,10 +41,30 @@ function JournalForm({ onSubmit }) {
 		dispatchForm({ type: 'SUBMIT', payload: formProps});
 	};
 
+	const changeValues = (e) => {
+		dispatchForm({ type: 'SET_VALUE', payload: { [e.target.name]: e.target.value}});
+		// // console.log(e.target.value);
+		// if (e.target.name === 'title') {
+		// 	values.title = e.target.value;
+		// }
+		// if (e.target.name === 'date') {
+		// 	values.date = e.target.value;
+		// }
+		// if (e.target.name === 'text') {
+		// 	values.text = e.target.value;
+		// }
+		// if (e.target.name === 'tag') {
+		// 	values.tag = e.target.value;
+		// }
+		
+		
+		console.log(values);
+	};
+
 	return (
-		<form className={styles['journal-form']} onSubmit={addJournalItem}> 
+		<form className={styles['journal-form']}  onSubmit={addJournalItem}> 
 			<div>
-				<input type='text' name="title" className={classNames(styles['input-title'], {
+				<input onChange={changeValues} value={values.title} type='text' name="title" className={classNames(styles['input-title'], {
 					[styles['invalid']]: !isValid.title
 				})}  /> 
 			</div>
@@ -51,7 +73,7 @@ function JournalForm({ onSubmit }) {
 					<img src="/calendar.svg" alt="calendar icon" />
 					<span>Дата</span>
 				</label>
-				<input type='date' name="date" id='date' className={classNames(styles['input'], {
+				<input onChange={changeValues} value={values.date} type='date' name="date" id='date' className={classNames(styles['input'], {
 					[styles['invalid']]: !isValid.date
 				})}  /> 
 			</div>
@@ -60,10 +82,10 @@ function JournalForm({ onSubmit }) {
 					<img src="/folder.svg" alt="folder icon" />
 					<span>Метки</span>
 				</label>
-				<input type='text' name="tag" id='tag' className={styles.input} /> 
+				<input onChange={changeValues} value={values.tag} type='text' name="tag" id='tag' className={styles.input} /> 
 			</div>
 			
-			<textarea name="text" id="" cols="30" rows="10" className={classNames(styles['input'], {
+			<textarea onChange={changeValues} value={values.text} name="text" id="" cols="30" rows="10" className={classNames(styles['input'], {
 				[styles['invalid']]: !isValid.text
 			})}  ></textarea>
 			<Button text="Сохранить" />
