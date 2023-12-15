@@ -31,7 +31,7 @@ function JournalForm({ onSubmit }) {
 			console.log('Очистка формы');
 			dispatchForm({ type: 'CLEAR_FORM' });
 		}
-	}, [isFormReadyToSubmit]);
+	}, [isFormReadyToSubmit, values, onSubmit]);
 
 	const addJournalItem = (e) => {
 		e.preventDefault();
@@ -43,22 +43,6 @@ function JournalForm({ onSubmit }) {
 
 	const changeValues = (e) => {
 		dispatchForm({ type: 'SET_VALUE', payload: { [e.target.name]: e.target.value}});
-		// // console.log(e.target.value);
-		// if (e.target.name === 'title') {
-		// 	values.title = e.target.value;
-		// }
-		// if (e.target.name === 'date') {
-		// 	values.date = e.target.value;
-		// }
-		// if (e.target.name === 'text') {
-		// 	values.text = e.target.value;
-		// }
-		// if (e.target.name === 'tag') {
-		// 	values.tag = e.target.value;
-		// }
-		
-		
-		console.log(values);
 	};
 
 	return (
