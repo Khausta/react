@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 import { useEffect, useReducer, useRef } from 'react';
 import classNames from 'classnames';
 import { INITIAL_STATE, formReducer } from './JournalForm.state';
-
+import Input from '../Input/Input';
 
 
 function JournalForm({ onSubmit }) {
@@ -70,25 +70,21 @@ function JournalForm({ onSubmit }) {
 	return (
 		<form className={styles['journal-form']}  onSubmit={addJournalItem}> 
 			<div>
-				<input ref={titleRef} onChange={changeValues} value={values.title} type='text' name="title" className={classNames(styles['input-title'], {
-					[styles['invalid']]: !isValid.title
-				})}  /> 
+				<Input ref={titleRef} onChange={changeValues} isValid={isValid.title} value={values.title} type='text' name="title" appearance='title' /> 
 			</div>
 			<div className={styles['form-row']}>
 				<label htmlFor="date" className={styles['form-label']}>
 					<img src="/calendar.svg" alt="calendar icon" />
 					<span>Дата</span>
 				</label>
-				<input ref={dateRef} onChange={changeValues} value={values.date} type='date' name="date" id='date' className={classNames(styles['input'], {
-					[styles['invalid']]: !isValid.date
-				})}  /> 
+				<Input ref={dateRef} onChange={changeValues} isValid={isValid.date} value={values.date} type='date' name="date" id='date'  /> 
 			</div>
 			<div className={styles['form-row']}>
 				<label htmlFor="tag" className={styles['form-label']}>
 					<img src="/folder.svg" alt="folder icon" />
 					<span>Метки</span>
 				</label>
-				<input onChange={changeValues} value={values.tag} type='text' name="tag" id='tag' className={styles.input} /> 
+				<Input onChange={changeValues} value={values.tag} type='text' name="tag" id='tag'  /> 
 			</div>
 			
 			<textarea ref={textRef} onChange={changeValues} value={values.text} name="text" id="" cols="30" rows="10" className={classNames(styles['input'], {

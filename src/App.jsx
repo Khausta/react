@@ -5,7 +5,7 @@ import JournalList from './components/JournalList/JournalList';
 import Header from './components/Header/Header';
 import Body from './layouts/Body/Body';
 import JournalForm from './components/JournalForm/JournalForm';
-import { useEffect, useState } from 'react';
+import { useLocalStorage } from './hooks/use-localstorage.hook';
 
 //удаляем INITIAL_DATE тк все перенесли в localStorage вручную
 // const INITIAL_DATA = [
@@ -23,52 +23,39 @@ import { useEffect, useState } from 'react';
 // 	}
 // ];
 
+// function mapItems(items) {
+// 	if(!items) {
+// 		return [];
+// 	} 
+// 	return items.map(i => ({
+// 		...i,
+// 		date: new Date(i.date)
+// 	}));
+// }
+
+function mapItems(items) {
+	if (!items) {
+		return [];
+	}
+
+	return items.map(i => ({
+		...i,
+		date: new Date(i.date)
+	}));
+}
+
 function App() {
 
-	const [items, setItems] = useState([]);
+	const [items, setItems] = useLocalStorage([]);
 
 	//запрос на сервер
 
-	useEffect(() => {
-		const data = JSON.parse(localStorage.getItem('data'));
-		if (data) { 
-			setItems(data.map(item => ({
-				...item,
-				date: new Date(item.date)
-			})));
-		} 
-	}, []);  //если оставить пустым объект, 
-	// то мы говорим useEffect, что зависимостей 
-	// нет и эта функция(эффект) не будет боьще никогда 
-	// триггеритсяпосле первого рендера, но затриггерится
-	//  первый раз тк компонент появился
-	
-
-	//если оставить без useEffect, то приложение упадет с ошибкой "to many re-renders",
-	//так как при проверке localStorage изменяется состояние 
-	// и происходит сразу же ре-рендер и снова проверка localStorage 
-	// и снова ре-рендер и дальше код выполняться не будет
-	// const data = JSON.parse(localStorage.getItem('data'));
-	// if (data) { 
-	// 	setItems(data.map(item => ({
-	// 		...item,
-	// 		date: new Date(item.date)
-	// 	})));
-	// }
-
-	useEffect(() => {
-		if (items.length) {
-			console.log('Запись');
-			localStorage.setItem('data', JSON.stringify(items));
-		}
-	}, [items]);
-
 	const addItem = item => {
-		setItems(oldItems => [...oldItems, {
+		setItems( [...mapItems(items), {
 			text: item.text,
 			title: item.title,
 			date: new Date(item.date),
-			id: oldItems.length > 0 ? Math.max(...oldItems.map(item => item.id)) + 1 : 1
+			id: items.length > 0 ? Math.max(...items.map(item => item.id)) + 1 : 1
 		}]);
 	};
 
@@ -80,7 +67,7 @@ function App() {
 				<Header/>
 				<JournalItemAddButton>
 				</JournalItemAddButton>
-				<JournalList items={items}>
+				<JournalList items={mapItems(items)}>
 				</JournalList>
 			</LeftPanel>
 			<Body>
