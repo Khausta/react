@@ -1,6 +1,32 @@
+// import { useRef } from 'react';
+import { useEffect, useState } from 'react';
+import FavoritesMenuItem from '../../components/FavoritesMenuItem';
+import MenuItem from '../../components/MenuItem';
 import styles from './NavigationPanel.module.css';
 
-function NavigationPanel({ children }) {
+
+function NavigationPanel({ isLogin, onClick }) {
+
+	const INITIAL_DATA = {
+		iconExit: 'login',
+		textExit: 'Войти'
+	};
+
+	const [loginState, setLoginState] = useState(INITIAL_DATA);
+
+
+
+	useEffect(() => {
+		if (isLogin) {
+			setLoginState({
+				iconExit: false,
+				textExit: 'Выйти'
+			});
+		} else {
+			setLoginState(INITIAL_DATA);
+		}
+	}, [isLogin]);
+
     
 	return (
 		<div className={styles['navigation-panel']}>
@@ -13,7 +39,28 @@ function NavigationPanel({ children }) {
 				</a>
 				<div className={styles['navigation-panel__menu']}>
 					<ul className={styles['navigation-panel__menu-list']}>
-						{children}
+						<MenuItem
+							href='#'
+							text='Поиск фильмов'
+							
+						/>
+						<FavoritesMenuItem
+							href='#'
+							count={3}
+						/>
+						<MenuItem
+							href='#'
+							text={isLogin}
+							icon='user'
+							appearance='profile'
+							isLogin={isLogin}				
+						/>
+						<MenuItem
+							href='#'
+							text={loginState.textExit}
+							icon={loginState.iconExit}
+							onClick={onClick}
+						/>
 					</ul>
 				</div>
 			</div>

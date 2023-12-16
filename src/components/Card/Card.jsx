@@ -1,7 +1,7 @@
 import styles from './Card.module.css';
 
 function Card({ title, cover, rating }) {
-	console.log(title, cover, rating);
+	// console.log(title, cover, rating);
 
 	
 

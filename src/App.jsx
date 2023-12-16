@@ -5,13 +5,16 @@ import Input from './components/Input/index';
 import InputContainer from './components/InputsContainer/index';
 import NavigationPanel from './layouts/NavigationPanel/index';
 import Paragraph from './components/Paragraph/index';
-import MenuItem from './components/MenuItem/index';
-import FavoritesMenuItem from './components/FavoritesMenuItem/index';
 import Body from './layouts/Body/index';
 import CardGrid from './components/CardGrid/index';
+import Profile from './components/Profile/index';
+import { useEffect, useState } from 'react';
 
 
 function App() {
+
+	const [profiles, setProfiles] = useState([]);
+	const [currentUser, setCurrentUser] = useState('');
 
 	const data = [
 		{
@@ -77,22 +80,52 @@ function App() {
 		}
 	];
 
+	useEffect(() => {
+		const res = JSON.parse(localStorage.getItem('users'));
+		if (res) {
+			setProfiles( res.map(item => ({
+				...item
+			})));
+		}
+	}, []);
+
+	useEffect(() => {
+		if(profiles.length) {
+			localStorage.setItem('users', JSON.stringify(profiles));
+		}
+	}, [profiles]);
+
+	const addProfile = (item) => {
+		setCurrentUser(item.userName);
+		const isExistUser = profiles.find(el => el.userName === item.userName);
+		console.log(item.userName);
+		if (!isExistUser) {
+			setProfiles(oldProfiles => ([...oldProfiles, {
+				userName: item.userName,
+				userId: oldProfiles.length > 0 ? Math.max(...oldProfiles.map(el => el.userId)) + 1 : 1
+			}]));
+		}
+		console.log(profiles);
+	};
+
+
+
+	const logOut = () => {
+		console.log('hello');
+		if (currentUser) {
+			console.log(currentUser);
+			setCurrentUser('');
+			console.log(currentUser);
+		} 
+		// return;
+	};
+
+
+
 	return (
 		<>
-			<NavigationPanel>
-				<MenuItem
-					href='#'
-					text='Поиск фильмов'
-				/>
-				<FavoritesMenuItem
-					href='#'
-					count={3}
-				/>
-				<MenuItem
-					href='#'
-					text='Войти'
-					icon='login'
-				/>
+			<NavigationPanel isLogin={currentUser} onClick={logOut}>
+				
 			</NavigationPanel>
 			<Body>
 				<Header 
@@ -111,6 +144,10 @@ function App() {
 						action={data[0].action}
 					/>
 				</InputContainer>
+				<Header 
+					title={data[1].title}
+				/>
+				<Profile onSubmit={addProfile}></Profile>
 				<CardGrid items={movies} />
 			</Body>
 			
