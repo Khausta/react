@@ -1,14 +1,14 @@
 import './App.css';
-import Button from './components/Button/Button';
-import Header from './components/Header/Header';
-import Input from './components/Input/Input';
-import InputContainer from './components/InputsContainer/InputsContainer';
-import NavigationPanel from './layouts/NavigationPanel/NavigationPanel';
-import Paragraph from './components/Paragraph/Paragraph';
-import MenuItem from './components/MenuItem/MenuItem';
-import FavoritesMenuItem from './components/FavoritesMenuItem/FavoritesMenuItem';
-import Body from './layouts/Body/Body';
-import CardGrid from './components/CardGrid/CardGrid';
+import Button from './components/Button/index';
+import Header from '/src/components/Header/index';
+import Input from './components/Input/index';
+import InputContainer from './components/InputsContainer/index';
+import NavigationPanel from './layouts/NavigationPanel/index';
+import Paragraph from './components/Paragraph/index';
+import MenuItem from './components/MenuItem/index';
+import FavoritesMenuItem from './components/FavoritesMenuItem/index';
+import Body from './layouts/Body/index';
+import CardGrid from './components/CardGrid/index';
 
 
 function App() {

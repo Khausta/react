@@ -1,5 +1,5 @@
 import styles from './CardGrid.module.css';
-import Card from '../Card/Card';
+import Card from '../Card/index';
 function CardGrid({ items }) {
  
 	if (items.length === 0) {
