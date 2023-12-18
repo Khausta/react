@@ -34,3 +34,7 @@
     transform: translateY(-50%);
 }
 
+.invalid {
+    background: rgb(110, 57, 95);
+    border: 1px solid rgb(240, 105, 105);
+}

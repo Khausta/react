@@ -8,12 +8,22 @@ import Paragraph from './components/Paragraph/index';
 import Body from './layouts/Body/index';
 import CardGrid from './components/CardGrid/index';
 import Profile from './components/Profile/index';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useLocalstorage } from './hooks/use-localstorage.hook';
 
+function mapItems(items) {
+	if (!items) {
+		return [];
+	}
+	console.log(items);
+	return items.map(i => ({
+		...i
+	}));
+}
 
 function App() {
 
-	const [profiles, setProfiles] = useState([]);
+	const [profiles, setProfiles] = useLocalstorage('users');
 	const [currentUser, setCurrentUser] = useState('');
 
 	const data = [
@@ -80,53 +90,33 @@ function App() {
 		}
 	];
 
-	useEffect(() => {
-		const res = JSON.parse(localStorage.getItem('users'));
-		if (res) {
-			setProfiles( res.map(item => ({
-				...item
-			})));
-		}
-	}, []);
-
-	useEffect(() => {
-		if(profiles.length) {
-			localStorage.setItem('users', JSON.stringify(profiles));
-		}
-	}, [profiles]);
-
 	const addProfile = (item) => {
-		setCurrentUser(item.userName);
-		const isExistUser = profiles.find(el => el.userName === item.userName);
-		console.log(item.userName);
-		if (!isExistUser) {
-			setProfiles(oldProfiles => ([...oldProfiles, {
-				userName: item.userName,
-				userId: oldProfiles.length > 0 ? Math.max(...oldProfiles.map(el => el.userId)) + 1 : 1
-			}]));
-		}
 		console.log(profiles);
+		const isExistUser = profiles.find(el => el.userName === item.userName);
+		if (!isExistUser) {
+			setProfiles([...mapItems(profiles), {
+				userName: item.userName,
+				userId: profiles.length > 0 ? Math.max(...profiles.map(el => el.userId)) + 1 : 1
+			}]);
+		}
+		//add name of user to state, which is login 
+		setCurrentUser( item.userName);
 	};
 
 
 
 	const logOut = () => {
-		console.log('hello');
 		if (currentUser) {
-			console.log(currentUser);
 			setCurrentUser('');
-			console.log(currentUser);
 		} 
-		// return;
+		
 	};
-
-
 
 	return (
 		<>
-			<NavigationPanel isLogin={currentUser} onClick={logOut}>
-				
-			</NavigationPanel>
+			<NavigationPanel  
+				onClick={logOut} 
+				isLogin={currentUser} />
 			<Body>
 				<Header 
 					title={data[0].title}

@@ -4,7 +4,7 @@ import cN from 'classnames';
 
 
 
-function MenuItem({ href, text, icon, appearance, isLogin}) {
+function MenuItem({ href, text, icon, appearance, isLogin, onClick}) {
 	const icons = [
 		{
 			name: 'login',
@@ -32,7 +32,7 @@ function MenuItem({ href, text, icon, appearance, isLogin}) {
 			<li className={cN(styles['menu-item'], {
 				[styles['hide']]: (appearance === 'profile' && !isLogin)
 			})} >
-				<a className={styles['menu-item__link']} href={href}  rel="noopener noreferrer">
+				<a className={styles['menu-item__link']} href={href}  rel="noopener noreferrer" onClick={onClick}>
 					{text}
 					{icons.find(el => el.name === icon).icon}
 				</a>
@@ -42,7 +42,7 @@ function MenuItem({ href, text, icon, appearance, isLogin}) {
 	
 	return (
 		<li className={styles['menu-item']} >
-			<a className={styles['menu-item__link']} href={href}  rel="noopener noreferrer">
+			<a className={styles['menu-item__link']} href={href} rel="noopener noreferrer" onClick={onClick}>
 				{text}
 			</a>
 		</li>

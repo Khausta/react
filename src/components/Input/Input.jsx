@@ -1,7 +1,7 @@
 import styles from './Input.module.css';
 import classNames from 'classnames';
 
-function Input({ placeholder, name,  icon }) {
+function Input({ placeholder, name,  icon, isValid = true }) {
 	const icons = [
 		{
 			name: 'search',
@@ -17,7 +17,8 @@ function Input({ placeholder, name,  icon }) {
 				<div  className={styles['input__wrapper']}>
 					<img className={styles['input_icon']} src={iconSrc} alt="search icon" />
 					<input name={name} className={classNames(styles['input'],{
-						[styles['input_with-icon']] : icon 
+						[styles['input_with-icon']] : icon,
+						[styles['invalid']]: !isValid 
 					})} type='text' placeholder={placeholder}>
 					</input>
 				</div>
@@ -25,7 +26,9 @@ function Input({ placeholder, name,  icon }) {
 		);
 	}
 	return (
-		<input name={name} className={styles['input']} type='text' placeholder={placeholder}>
+		<input name={name} className={classNames(styles['input'], {
+			[styles['invalid']]: !isValid 
+		})} type='text' placeholder={placeholder}>
 		</input>
 		
 	);

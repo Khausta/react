@@ -1,15 +1,25 @@
 import styles from './Profile.module.css';
-// import classNames from 'classnames';
 import Input from '../Input/index';
 import Button from '../Button/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function Profile({ onSubmit }) {
 
-	const [userValidState, setUserValidState] = useState({
-		userName: true
-	});
+	const [userValidState, setUserValidState] = useState(true);
+
+	useEffect(() => {
+		let timerInvalid;
+		if(!userValidState) {
+			timerInvalid = setTimeout(() => {
+				setUserValidState(true);
+			}, 2000);
+		}
+		return () => {
+			clearTimeout(timerInvalid);
+		};
+
+	}, [userValidState]);
     
 	const addProfileItem = (e) => {
 		e.preventDefault();
@@ -18,20 +28,22 @@ function Profile({ onSubmit }) {
 		console.log(formProp);
 		let isUserNameValid = true;
 		if (!formProp.userName?.trim().length) {
-			// console.log();
-			setUserValidState(state => ({...state, userName: false}));
+			setUserValidState(false);
 			isUserNameValid = false;
+			console.log(isUserNameValid);
+		} else {
+			setUserValidState(true);
+			isUserNameValid = true;
 		}
-		if (!isUserNameValid) {
-			return;
-		}
+		if (!isUserNameValid) return;
+
 		onSubmit(formProp);
 
 	};
 
 	return (
 		<form className={styles['profile']} onSubmit={addProfileItem}>
-			<Input placeholder={'Введите имя'} name={'userName'}>
+			<Input placeholder={'Введите имя'} name={'userName'} isValid={userValidState}>
 			</Input>
 			<Button action={'Войти'}></Button>
 		</form>

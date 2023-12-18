@@ -1,5 +1,5 @@
 // import { useRef } from 'react';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import FavoritesMenuItem from '../../components/FavoritesMenuItem';
 import MenuItem from '../../components/MenuItem';
 import styles from './NavigationPanel.module.css';
@@ -14,18 +14,20 @@ function NavigationPanel({ isLogin, onClick }) {
 
 	const [loginState, setLoginState] = useState(INITIAL_DATA);
 
-
-
 	useEffect(() => {
 		if (isLogin) {
 			setLoginState({
-				iconExit: false,
-				textExit: 'Выйти'
+				iconExit: '',
+				textExit: 'Выйти'	
 			});
 		} else {
 			setLoginState(INITIAL_DATA);
 		}
 	}, [isLogin]);
+
+	
+
+	
 
     
 	return (
