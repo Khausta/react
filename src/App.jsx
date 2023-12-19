@@ -35,13 +35,17 @@ function App() {
 		}]);
 	};
 
+	const changedUser = (e) => {
+		console.log(e);
+	};
+
 	
 
 	return (
 		<UserContext.Provider value={{ userId: 1 }}>
 			<div className='app'>
 				<LeftPanel>
-					<Header />
+					<Header changedUser={changedUser}/>
 					<JournalItemAddButton>
 					</JournalItemAddButton>
 					<JournalList items={mapItems(items)}>
