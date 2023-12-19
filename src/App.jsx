@@ -6,32 +6,7 @@ import Header from './components/Header/Header';
 import Body from './layouts/Body/Body';
 import JournalForm from './components/JournalForm/JournalForm';
 import { useLocalStorage } from './hooks/use-localstorage.hook';
-
-//удаляем INITIAL_DATE тк все перенесли в localStorage вручную
-// const INITIAL_DATA = [
-// 	{
-// 		id: 1,
-// 		title: 'Подготовка к обновлению курсов',
-// 		text: 'Горные походы открывают удивительные природные ландшафты, испытывают туристов физически и морально, дают возможность почувствовать себя первопроходцем. У горных походов свои секреты, приобщиться к которым можно только в команде единомышленников и профессионалов.',
-// 		date: new Date()
-// 	},
-// 	{
-// 		id: 2,
-// 		title: 'Поход в горы',
-// 		text: 'Различают альпинизм и горный туризм. Если в альпинизме главная цель – покорение вершины, то горный туризм – это длительное путешествие в горах, связанное с прохождением многочисленных препятствий. В нем огромную роль играет физическая подготовка путешественников, их выносливость, способность переносить большие нагрузки и тяжести в условиях высокогорья.',
-// 		date: new Date()
-// 	}
-// ];
-
-// function mapItems(items) {
-// 	if(!items) {
-// 		return [];
-// 	} 
-// 	return items.map(i => ({
-// 		...i,
-// 		date: new Date(i.date)
-// 	}));
-// }
+import { UserContext } from './context/user.context';
 
 function mapItems(items) {
 	if (!items) {
@@ -46,11 +21,12 @@ function mapItems(items) {
 
 function App() {
 
-	const [items, setItems] = useLocalStorage([]);
+	const [items, setItems] = useLocalStorage('data');
 
 	//запрос на сервер
 
 	const addItem = item => {
+		console.log(items);
 		setItems( [...mapItems(items), {
 			text: item.text,
 			title: item.title,
@@ -62,18 +38,20 @@ function App() {
 	
 
 	return (
-		<div className='app'>
-			<LeftPanel>
-				<Header/>
-				<JournalItemAddButton>
-				</JournalItemAddButton>
-				<JournalList items={mapItems(items)}>
-				</JournalList>
-			</LeftPanel>
-			<Body>
-				<JournalForm onSubmit={addItem} />
-			</Body>
-		</div>
+		<UserContext.Provider value={{ userId: 1 }}>
+			<div className='app'>
+				<LeftPanel>
+					<Header />
+					<JournalItemAddButton>
+					</JournalItemAddButton>
+					<JournalList items={mapItems(items)}>
+					</JournalList>
+				</LeftPanel>
+				<Body>
+					<JournalForm onSubmit={addItem} />
+				</Body>
+			</div>	
+		</UserContext.Provider>
 	);
 }
 
