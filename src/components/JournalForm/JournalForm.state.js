@@ -9,7 +9,7 @@ export const INITIAL_STATE = {
 		title: '',
 		date: '',
 		text: '',
-		tag: ''
+		tag: ''	
 	},
 	isFormReadyToSubmit: false
 };
@@ -21,11 +21,11 @@ export function formReducer(state, action) {
 		return { ...state, isValid: INITIAL_STATE.isValid};
 
 	case 'SUBMIT': {
-		const titleValidity = action.payload.title?.trim().length;
-		const dateValidity = action.payload.date;
-		const textValidity = action.payload.text?.trim().length;
+		const titleValidity = state.values.title?.trim().length;
+		const dateValidity = state.values.date;
+		const textValidity = state.values.text?.trim().length;
 		return {
-			values: action.payload,
+			...state,
 			isValid: {
 				title: titleValidity,
 				date: dateValidity,

@@ -58,22 +58,25 @@ function JournalForm({ onSubmit }) {
 		}
 	}, [isFormReadyToSubmit, values, onSubmit]);
 
+	
+
 	const addJournalItem = (e) => {
 		e.preventDefault();
-		const formData = new FormData(e.target);
-		const formProps = Object.fromEntries(formData);
-		console.log(formProps);
-		dispatchForm({ type: 'SUBMIT', payload: formProps});
+		dispatchForm({ type: 'SUBMIT' });	
 	};
+
+	useEffect(() => {
+		dispatchForm({ type: 'SET_VALUE', payload: { userId }}); //можно просто userId один раз прописать тк имена совпадают
+	}, [userId]);
 
 	const changeValues = (e) => {
 		dispatchForm({ type: 'SET_VALUE', payload: { [e.target.name]: e.target.value}});
+		console.log(formState);
 	};
 
 	return (
 		
 		<form className={styles['journal-form']}  onSubmit={addJournalItem}> 
-			{userId}
 			<div>
 				<Input ref={titleRef} onChange={changeValues} isValid={isValid.title} value={values.title} type='text' name="title" appearance='title' /> 
 			</div>
