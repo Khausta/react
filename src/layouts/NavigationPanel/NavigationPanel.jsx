@@ -1,35 +1,14 @@
-// import { useRef } from 'react';
-import { useState, useEffect } from 'react';
+
 import FavoritesMenuItem from '../../components/FavoritesMenuItem';
 import MenuItem from '../../components/MenuItem';
 import styles from './NavigationPanel.module.css';
 
+function NavigationPanel({ onClick }) {
 
-function NavigationPanel({ isLogin, onClick }) {
-
-	const INITIAL_DATA = {
-		iconExit: 'login',
-		textExit: 'Войти'
-	};
-
-	const [loginState, setLoginState] = useState(INITIAL_DATA);
-
-	useEffect(() => {
-		if (isLogin) {
-			setLoginState({
-				iconExit: '',
-				textExit: 'Выйти'	
-			});
-		} else {
-			setLoginState(INITIAL_DATA);
-		}
-	}, [isLogin]);
-
+	const activeUser = JSON
+		.parse(localStorage.getItem('users'))
+		?.find(el => el.isLogined === true);
 	
-
-	
-
-    
 	return (
 		<div className={styles['navigation-panel']}>
 			<div className={styles['navigation-panel__inner']}>
@@ -43,8 +22,7 @@ function NavigationPanel({ isLogin, onClick }) {
 					<ul className={styles['navigation-panel__menu-list']}>
 						<MenuItem
 							href='#'
-							text='Поиск фильмов'
-							
+							text='Поиск фильмов'	
 						/>
 						<FavoritesMenuItem
 							href='#'
@@ -52,15 +30,15 @@ function NavigationPanel({ isLogin, onClick }) {
 						/>
 						<MenuItem
 							href='#'
-							text={isLogin}
+							text={activeUser?.userName}
 							icon='user'
 							appearance='profile'
-							isLogin={isLogin}				
+							isLogin={activeUser?.isLogined}				
 						/>
 						<MenuItem
 							href='#'
-							text={loginState.textExit}
-							icon={loginState.iconExit}
+							text={activeUser?.isLogined ? 'Выйти' : 'Войти'}
+							icon={activeUser?.isLogined ? '' : 'login'}
 							onClick={onClick}
 						/>
 					</ul>

@@ -1,51 +1,55 @@
 import styles from './Profile.module.css';
 import Input from '../Input/index';
 import Button from '../Button/index';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 
 function Profile({ onSubmit }) {
 
-	const [userValidState, setUserValidState] = useState(true);
+	const [value, setValue] = useState('');
+	const [isValid, setIsValid] = useState(true);
+	const userNameRef = useRef();
+	const buttonRef = useRef();
+
 
 	useEffect(() => {
 		let timerInvalid;
-		if(!userValidState) {
+		if(!isValid) {
 			timerInvalid = setTimeout(() => {
-				setUserValidState(true);
+				setIsValid(true);
 			}, 2000);
 		}
 		return () => {
 			clearTimeout(timerInvalid);
 		};
-
-	}, [userValidState]);
+	}, [isValid]);
     
 	const addProfileItem = (e) => {
 		e.preventDefault();
 		const formData = new FormData(e.target);
 		const formProp = Object.fromEntries(formData);
-		console.log(formProp);
 		let isUserNameValid = true;
-		if (!formProp.userName?.trim().length) {
-			setUserValidState(false);
+		if (!value.trim().length) {
 			isUserNameValid = false;
-			console.log(isUserNameValid);
+			setIsValid(false);
 		} else {
-			setUserValidState(true);
 			isUserNameValid = true;
+			setIsValid(true);
 		}
 		if (!isUserNameValid) return;
-
 		onSubmit(formProp);
+		setValue('');
+	};
 
+	const onChange = (e) => {
+		setValue(e.target.value);
 	};
 
 	return (
 		<form className={styles['profile']} onSubmit={addProfileItem}>
-			<Input placeholder={'Введите имя'} name={'userName'} isValid={userValidState}>
+			<Input ref={userNameRef} placeholder={'Введите имя'} name={'userName'} isValid={isValid} onChange={onChange} value={value}>
 			</Input>
-			<Button action={'Войти'}></Button>
+			<Button ref={buttonRef} action={'Войти'}></Button>
 		</form>
 	);
 }

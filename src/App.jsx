@@ -8,23 +8,21 @@ import Paragraph from './components/Paragraph/index';
 import Body from './layouts/Body/index';
 import CardGrid from './components/CardGrid/index';
 import Profile from './components/Profile/index';
-import { useState } from 'react';
 import { useLocalstorage } from './hooks/use-localstorage.hook';
 
 function mapItems(items) {
 	if (!items) {
 		return [];
 	}
-	console.log(items);
 	return items.map(i => ({
-		...i
+		...i,
+		isLogined: false
 	}));
 }
 
 function App() {
 
 	const [profiles, setProfiles] = useLocalstorage('users');
-	const [currentUser, setCurrentUser] = useState('');
 
 	const data = [
 		{
@@ -91,32 +89,28 @@ function App() {
 	];
 
 	const addProfile = (item) => {
-		console.log(profiles);
-		const isExistUser = profiles.find(el => el.userName === item.userName);
-		if (!isExistUser) {
+		const existUser = profiles.find(el => el.userName === item.userName);
+		if (!existUser) {
 			setProfiles([...mapItems(profiles), {
 				userName: item.userName,
-				userId: profiles.length > 0 ? Math.max(...profiles.map(el => el.userId)) + 1 : 1
+				userId: profiles.length > 0 ? Math.max(...profiles.map(el => el.userId)) + 1 : 1,
+				isLogined: true
+			}]);
+		} else {
+			setProfiles([...mapItems(profiles.filter(el => el.userName != item.userName)), {
+				...existUser,
+				isLogined: true
 			}]);
 		}
-		//add name of user to state, which is login 
-		setCurrentUser( item.userName);
 	};
 
-
-
-	const logOut = () => {
-		if (currentUser) {
-			setCurrentUser('');
-		} 
-		
+	const resetLogin = () => {
+		setProfiles([...mapItems(profiles)]);
 	};
 
 	return (
 		<>
-			<NavigationPanel  
-				onClick={logOut} 
-				isLogin={currentUser} />
+			<NavigationPanel onClick={resetLogin}/>
 			<Body>
 				<Header 
 					title={data[0].title}

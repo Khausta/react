@@ -1,10 +1,13 @@
+import { forwardRef } from 'react';
 import styles from './Button.module.css';
 
-function Button({ action, onClick }) {
+export const Button = forwardRef(function Button({ action, onClick }, ref) {
 	
 	return (
-		<button onClick={onClick} className={`${styles.button} ${styles.accent}`}>{action}</button>
+		<button ref={ref} onClick={onClick} className={`${styles.button} ${styles.accent}`}>{action}</button>
 	);
-}
+});
+
+
   
 export default Button;
