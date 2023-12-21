@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Button from '../Button/Button';
 import SelectUser from '../SelectUser/SelectUser';
 import Logo from '../Logo/LOgo';
@@ -10,10 +10,9 @@ function Header() {
 	const [logoIndex, setLogoIndex] = useState(0);
 	console.log('Header');
 
-	const toggleLogo = () => {
-		// setLogoIndex(state => state === 0 ? 1 : 0);
+	const toggleLogo = useCallback(() => { //оборачиваем фцункцию, запоминаем результат, если входные параметры не меняются
 		setLogoIndex(state => Number(!state));
-	};
+	}, []);
 
 	return (
 		<>
