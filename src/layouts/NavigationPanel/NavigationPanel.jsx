@@ -1,13 +1,18 @@
 
+import { useContext } from 'react';
 import FavoritesMenuItem from '../../components/FavoritesMenuItem';
 import MenuItem from '../../components/MenuItem';
 import styles from './NavigationPanel.module.css';
+import { UserContext } from '../../context/user.context';
 
 function NavigationPanel({ onClick }) {
 
-	const activeUser = JSON
-		.parse(localStorage.getItem('users'))
-		?.find(el => el.isLogined === true);
+	const { userName, setUserName } = useContext(UserContext);
+
+	const resetUser = () => {
+		setUserName('');
+		onClick();
+	};
 	
 	return (
 		<div className={styles['navigation-panel']}>
@@ -30,16 +35,16 @@ function NavigationPanel({ onClick }) {
 						/>
 						<MenuItem
 							href='#'
-							text={activeUser?.userName}
+							text={userName}
 							icon='user'
 							appearance='profile'
-							isLogin={activeUser?.isLogined}				
+							isLogin={userName}				
 						/>
 						<MenuItem
 							href='#'
-							text={activeUser?.isLogined ? 'Выйти' : 'Войти'}
-							icon={activeUser?.isLogined ? '' : 'login'}
-							onClick={onClick}
+							text={userName ? 'Выйти' : 'Войти'}
+							icon={userName ? '' : 'login'}
+							onClick={resetUser}
 						/>
 					</ul>
 				</div>

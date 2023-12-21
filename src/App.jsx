@@ -9,6 +9,7 @@ import Body from './layouts/Body/index';
 import CardGrid from './components/CardGrid/index';
 import Profile from './components/Profile/index';
 import { useLocalstorage } from './hooks/use-localstorage.hook';
+import { UserContextProvider } from './context/user.context';
 
 function mapItems(items) {
 	if (!items) {
@@ -89,15 +90,15 @@ function App() {
 	];
 
 	const addProfile = (item) => {
-		const existUser = profiles.find(el => el.userName === item.userName);
+		const existUser = profiles.find(el => el.userName === item);
 		if (!existUser) {
 			setProfiles([...mapItems(profiles), {
-				userName: item.userName,
+				userName: item,
 				userId: profiles.length > 0 ? Math.max(...profiles.map(el => el.userId)) + 1 : 1,
 				isLogined: true
 			}]);
 		} else {
-			setProfiles([...mapItems(profiles.filter(el => el.userName != item.userName)), {
+			setProfiles([...mapItems(profiles.filter(el => el.userName != item)), {
 				...existUser,
 				isLogined: true
 			}]);
@@ -109,7 +110,7 @@ function App() {
 	};
 
 	return (
-		<>
+		<UserContextProvider>
 			<NavigationPanel onClick={resetLogin}/>
 			<Body>
 				<Header 
@@ -135,7 +136,7 @@ function App() {
 				<CardGrid items={movies} />
 			</Body>
 			
-		</>
+		</UserContextProvider>
 	);
 }
 

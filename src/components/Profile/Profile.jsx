@@ -1,16 +1,17 @@
 import styles from './Profile.module.css';
 import Input from '../Input/index';
 import Button from '../Button/index';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { UserContext } from '../../context/user.context';
 
 
 function Profile({ onSubmit }) {
 
+	const { userName, setUserName } = useContext(UserContext);
 	const [value, setValue] = useState('');
 	const [isValid, setIsValid] = useState(true);
 	const userNameRef = useRef();
 	const buttonRef = useRef();
-
 
 	useEffect(() => {
 		let timerInvalid;
@@ -26,9 +27,8 @@ function Profile({ onSubmit }) {
     
 	const addProfileItem = (e) => {
 		e.preventDefault();
-		const formData = new FormData(e.target);
-		const formProp = Object.fromEntries(formData);
 		let isUserNameValid = true;
+		console.log(value);
 		if (!value.trim().length) {
 			isUserNameValid = false;
 			setIsValid(false);
@@ -37,8 +37,9 @@ function Profile({ onSubmit }) {
 			setIsValid(true);
 		}
 		if (!isUserNameValid) return;
-		onSubmit(formProp);
+		onSubmit(value);
 		setValue('');
+		setUserName(value);
 	};
 
 	const onChange = (e) => {
@@ -53,6 +54,5 @@ function Profile({ onSubmit }) {
 		</form>
 	);
 }
-
 
 export default Profile;
