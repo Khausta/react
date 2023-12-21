@@ -17,7 +17,7 @@ function Header() {
 
 	return (
 		<>
-			<Logo/>
+			<Logo image={logos[0]}/>
 			<SelectUser/>
 			<Button onClick={toggleLogo}>Change logo</Button>
 		</>

@@ -1,11 +1,11 @@
 import styles from './Logo.module.css';
+import { memo } from 'react';
 
-function Logo() {
+function Logo({ image }) {
+	console.log(memo);
 	console.log('Logo');
-	// return <img className={styles.logo} src={image} alt="Personal Journal Logotype" />;
-	return <img className={styles.logo} src={'/logo.svg'} alt="Personal Journal Logotype" />;
-	//все равно происходит рендер дочерних элементов, даже если компонент не принимает prop
+	return <img className={styles.logo} src={image} alt="Personal Journal Logotype" />;
 
 }
 
-export default Logo;
+export default memo(Logo);
