@@ -1,14 +1,25 @@
+import { useCallback, useState } from 'react';
+import Button from '../Button/Button';
 import SelectUser from '../SelectUser/SelectUser';
-import styles from './Header.module.css';
+import Logo from '../Logo/LOgo';
+
+const logos = ['/logo.svg', '/vite.svg' ];
 
 function Header() {
 
+	const [logoIndex, setLogoIndex] = useState(0);
+	console.log('Header');
+
+	const toggleLogo = useCallback(() => { //оборачиваем фцункцию, запоминаем результат, если входные параметры не меняются
+		setLogoIndex(state => Number(!state));
+	}, []);
+
 	return (
 		<>
-			<img className={styles.logo} src=" /logo.svg" alt="Personal Journal Logotype" />
-			<SelectUser></SelectUser>
+			<Logo image={logos[0]}/>
+			<SelectUser/>
+			<Button onClick={toggleLogo}>Change logo</Button>
 		</>
-		
 		
 	);
 }
