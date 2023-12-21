@@ -22,6 +22,7 @@ function mapItems(items) {
 function App() {
 
 	const [items, setItems] = useLocalStorage('data');
+	console.log('App');
 
 	//запрос на сервер
 

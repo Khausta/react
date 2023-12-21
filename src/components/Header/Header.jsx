@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import Button from '../Button/Button';
 import SelectUser from '../SelectUser/SelectUser';
-import styles from './Header.module.css';
+import Logo from '../Logo/LOgo';
 
 const logos = ['/logo.svg', '/vite.svg' ];
 
 function Header() {
 
 	const [logoIndex, setLogoIndex] = useState(0);
+	console.log('Header');
 
 	const toggleLogo = () => {
 		// setLogoIndex(state => state === 0 ? 1 : 0);
@@ -16,7 +17,7 @@ function Header() {
 
 	return (
 		<>
-			<img className={styles.logo} src={logos[logoIndex]} alt="Personal Journal Logotype" />
+			<Logo/>
 			<SelectUser/>
 			<Button onClick={toggleLogo}>Change logo</Button>
 		</>
