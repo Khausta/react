@@ -1,0 +1,6 @@
+.profile {
+    display: flex;
+    gap: 8px;
+    max-width: 384px;
+    flex-direction: column;
+}
