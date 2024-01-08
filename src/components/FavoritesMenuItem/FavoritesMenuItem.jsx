@@ -13,10 +13,6 @@ function FavoritesMenuItem({ href, count}) {
 			</a>
 		</li>
 	);
-	
-
-	
-
 }
 
 

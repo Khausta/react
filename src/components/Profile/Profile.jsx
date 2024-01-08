@@ -1,6 +1,6 @@
 import styles from './Profile.module.css';
-import Input from '../Input/index';
-import Button from '../Button/index';
+import Input from '../Input';
+import Button from '../Button';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { UserContext } from '../../context/user.context';
 
@@ -28,7 +28,6 @@ function Profile({ onSubmit }) {
 	const addProfileItem = (e) => {
 		e.preventDefault();
 		let isUserNameValid = true;
-		console.log(value);
 		if (!value.trim().length) {
 			isUserNameValid = false;
 			setIsValid(false);

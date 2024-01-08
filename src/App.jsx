@@ -1,13 +1,11 @@
 import './App.css';
-import Button from './components/Button/index';
-import Header from '/src/components/Header/index';
+import Button from './components/Button';
+import Header from '/src/components/Header';
 import Input from './components/Input/index';
-import InputContainer from './components/InputsContainer/index';
-import NavigationPanel from './layouts/NavigationPanel/index';
-import Paragraph from './components/Paragraph/index';
-import Body from './layouts/Body/index';
-import CardGrid from './components/CardGrid/index';
-import Profile from './components/Profile/index';
+import NavigationPanel from './layouts/NavigationPanel';
+import Body from './layouts/Body';
+import CardGrid from './components/CardGrid';
+import Profile from './components/Profile';
 import { useLocalstorage } from './hooks/use-localstorage.hook';
 import { UserContextProvider } from './context/user.context';
 
@@ -116,10 +114,10 @@ function App() {
 				<Header 
 					title={data[0].title}
 				/>
-				<Paragraph
-					text={data[0].text}
-				/>
-				<InputContainer>
+				<p className='paragraph'>
+					{data[0].text}
+				</p>
+				<div className='search-wrapper'>
 					<Input
 						icon={'search'}
 						placeholder={'Введите название'}	
@@ -128,7 +126,7 @@ function App() {
 						onClick={() => console.log('Search')}
 						action={data[0].action}
 					/>
-				</InputContainer>
+				</div>
 				<Header 
 					title={data[1].title}
 				/>

@@ -10,15 +10,11 @@ export const Input = forwardRef(function Input({ placeholder, name,  icon, isVal
 		}
 	];
 
-	const iconSrc = icon ? icons.find(el => el.name == icon).path : null;
-
-
-
 	if (icon) {
 		return (
 			<>
 				<div  className={styles['input__wrapper']}>
-					<img className={styles['input_icon']} src={iconSrc} alt="search icon" />
+					<img className={styles['input_icon']} src={icons.find(el => el.name == icon).path} alt={icon + ' ' + 'icon'} />
 					<input {...props} ref={ref} name={name} className={classNames(styles['input'],{
 						[styles['input_with-icon']] : icon,
 						[styles['invalid']]: !isValid 

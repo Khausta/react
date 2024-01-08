@@ -1,10 +1,6 @@
 import styles from './Card.module.css';
 
 function Card({ title, cover, rating }) {
-	// console.log(title, cover, rating);
-
-	
-
 	return (
 		<div className={styles['card']}>
 			<div className={styles['card__cover-block']}>

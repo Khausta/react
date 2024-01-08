@@ -40,3 +40,19 @@
 .read-the-docs {
   color: #888;
 }
+
+.search-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; 
+}
+
+.paragraph {
+  margin-bottom: 24px;
+  color: var(--grey-300);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  overflow: hidden;
+}

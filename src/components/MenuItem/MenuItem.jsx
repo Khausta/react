@@ -1,5 +1,5 @@
 import styles from './MenuItem.module.css';
-import cN from 'classnames';
+import classNames from 'classnames';
 
 
 
@@ -29,7 +29,7 @@ function MenuItem({ href, text, icon, appearance, isLogin, onClick}) {
 	
 	if (icon) {
 		return (
-			<li className={cN(styles['menu-item'], {
+			<li className={classNames(styles['menu-item'], {
 				[styles['hide']]: (appearance === 'profile' && !isLogin)
 			})} >
 				<a className={styles['menu-item__link']} href={href}  rel="noopener noreferrer" onClick={onClick}>
