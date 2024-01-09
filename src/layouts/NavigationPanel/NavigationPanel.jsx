@@ -1,5 +1,5 @@
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import FavoritesMenuItem from '../../components/FavoritesMenuItem';
 import MenuItem from '../../components/MenuItem';
 import styles from './NavigationPanel.module.css';
@@ -8,6 +8,12 @@ import { UserContext } from '../../context/user.context';
 function NavigationPanel({ onClick }) {
 
   const { userName, setUserName } = useContext(UserContext);
+  
+  //checking of the logined User after site refresh 
+  useEffect(()=> {
+    const loginedUser = JSON.parse(localStorage.getItem('users'));
+    setUserName(loginedUser.find(el => el.isLogined === true)?.userName);
+  }, []);
 
   const resetUser = () => {
     setUserName('');
