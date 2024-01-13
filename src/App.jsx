@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import './App.css';
 import LeftPanel from './layouts/LeftPanel/LeftPanel';
 import JournalItemAddButton from './components/JournalItemAddButton/JournalItemAddButton';
