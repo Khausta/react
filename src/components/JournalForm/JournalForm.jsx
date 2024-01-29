@@ -7,7 +7,7 @@ import Input from '../Input/Input';
 import { UserContext } from '../../context/user.context';
 
 
-function JournalForm({ onSubmit, data }) {
+function JournalForm({ onSubmit, data, onDelete }) {
 
 	const [ formState, dispatchForm ] = useReducer(formReducer, INITIAL_STATE);
 	const { isValid, isFormReadyToSubmit, values } = formState;
@@ -34,6 +34,10 @@ function JournalForm({ onSubmit, data }) {
 	};
 
 	useEffect(() => {
+		if (!data) {
+			dispatchForm({ type: 'CLEAR_FORM' });
+			dispatchForm({ type: 'SET_VALUE', payload: { userId }});
+		}
 		dispatchForm({ type: 'SET_VALUE', payload: { ...data }});
 	}, [data]);
 
@@ -68,6 +72,7 @@ function JournalForm({ onSubmit, data }) {
 		e.preventDefault();
 		dispatchForm({ type: 'SUBMIT' });	
 	};
+	
 
 	useEffect(() => {
 		dispatchForm({ type: 'SET_VALUE', payload: { userId }}); //можно просто userId один раз прописать тк имена совпадают
@@ -78,11 +83,20 @@ function JournalForm({ onSubmit, data }) {
 		console.log(formState);
 	};
 
+	const deleteJournalForm = () => {
+		onDelete(data.id);
+		dispatchForm({ type: 'CLEAR_FORM' });
+		dispatchForm({ type: 'SET_VALUE', payload: { userId }});
+	};
+
 	return (
 		
 		<form className={styles['journal-form']}  onSubmit={addJournalItem}> 
-			<div>
+			<div className={styles['form-title']}>
 				<Input ref={titleRef} onChange={changeValues} isValid={isValid.title} value={values.title} type='text' name="title" appearance='title' /> 
+				{data?.id && <button className={styles['delete-button']} onClick={deleteJournalForm} type="button">
+					<img src="/archive.svg" alt="delete icon" />
+				</button>}
 			</div>
 			<div className={styles['form-row']}>
 				<label htmlFor="date" className={styles['form-label']}>

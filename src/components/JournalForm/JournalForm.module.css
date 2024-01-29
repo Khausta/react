@@ -29,6 +29,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     align-items: center;
 }
 
+.form-title{
+    display: flex;
+    align-items: center;
+}
+
 .form-row {
     display: flex;
     align-items: center;
@@ -43,4 +48,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 textarea {
     resize: none;
+}
+
+.delete-button {
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.delete-button:hover {
+   background: rgb(250, 250, 250, 0.05);
+   border-radius: 50%;
 }
