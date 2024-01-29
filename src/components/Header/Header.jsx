@@ -1,12 +1,11 @@
-import './Header.css';
+import styles from './Header.module.css';
 
 function Header({ title }) {
-
-	return (
-		<>
-			<h1 className="header">{title}</h1>
-		</>
-	);
+  return (
+    <>
+      <h1 className={styles.header}>{title}</h1>
+    </>
+  );
 }
   
 export default Header;
