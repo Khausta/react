@@ -1,0 +1,39 @@
+.navigation-panel {   
+    background: rgba(63, 24, 82, 0.80);
+}
+
+.navigation-panel__inner {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 2rem 2rem 2rem;
+}
+
+
+
+.navigation-panel__logo {
+    text-decoration: none;
+    height: fit-content;
+    display: block;
+    width: fit-content;
+}
+
+
+.navigation-panel__logo-img:hover {
+    path {
+        stroke: var(--white-100);
+        transition: .2s;
+    }
+}
+
+.navigation-panel__menu {
+    margin-left: auto;
+ }
+
+ .navigation-panel__menu-list {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+ }
